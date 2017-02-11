@@ -16,5 +16,6 @@ namespace Restapp.Models
         [StringLength(1024)]
         public string Description { get; set; }
 
+        public List<FoodTypeRestaurant> FoodTypeRestaurants { get; set; }
     }
 }

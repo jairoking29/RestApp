@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -22,5 +23,13 @@ namespace Restapp.Models
         public int IdRestaurantType { get; set; }
 
         public RestaurantType RestaurantType { get; set; }
+
+        public List<FoodTypeRestaurant> FoodTypeRestaurants { get; set; }
+
+        [NotMapped]
+        public List<FoodType> FoodTypes { get; set; }
+
+        [NotMapped]
+        public List<int> FoodTypeIds { get; set; }
     }
 }

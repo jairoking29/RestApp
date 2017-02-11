@@ -18,5 +18,7 @@ namespace Restapp.Models
         public double Value { get; set; }
 
         public Restaurant Restaurant { get; set; }
+
+        public User User { get; set; }
     }
 }

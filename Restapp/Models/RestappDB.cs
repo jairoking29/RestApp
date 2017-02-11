@@ -6,8 +6,13 @@ using System.Web;
 
 namespace Restapp.Models
 {
-    public class RestappDB
+    public class RestappDB : DbContext
     {
+        public RestappDB() : base( "RestappDB" )
+        {
+
+        }
+
         public DbSet<Restaurant> Restaurants { get; set; }
 
         public DbSet<RestaurantBranch> RestaurantBranches { get; set; }
