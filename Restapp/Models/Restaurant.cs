@@ -11,6 +11,7 @@ namespace Restapp.Models
     {
         public int Id { get; set; }
 
+        [Display(Name = "Nombre")]
         [StringLength(128)]
         public string Name { get; set; }
 
