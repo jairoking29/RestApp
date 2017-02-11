@@ -13,8 +13,9 @@ namespace Restapp.Repositories
 
         public Restaurant GetWithFoodTypes(int id)
         {
-            var restaurant = _db.Restaurants.Include(r => r.FoodTypeRestaurants).FirstOrDefault(r => r.Id == id);
-            restaurant.FoodTypeIds = restaurant.FoodTypeRestaurants.Select(ftr => ftr.IdFoodType).ToList();
+            var restaurant = _db.Restaurants.FirstOrDefault(r => r.Id == id);
+            restaurant.FoodTypeIds = RepositoryHandler.FoodTypeRestaurantRepository
+                .GetTable().Where(ftr => ftr.IdRestaurant == restaurant.Id).Select(ftr => ftr.IdFoodType).ToList();
             return restaurant;
         }
     }

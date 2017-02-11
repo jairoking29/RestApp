@@ -34,5 +34,10 @@ namespace Restapp.Repositories
             _table.Add(entity);
             _db.SaveChanges();
         }
+
+        public DbSet<T> GetTable()
+        {
+            return _table;
+        }
     }
 }
