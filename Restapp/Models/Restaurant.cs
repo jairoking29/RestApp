@@ -15,16 +15,22 @@ namespace Restapp.Models
         [StringLength(128)]
         public string Name { get; set; }
 
+        [Display(Name = "Descripción")]
         [StringLength(1024)]
         public string Description { get; set; }
 
+        [Display(Name = "Teléfono")]
         [StringLength(16)]
         public string Phone { get; set; }
 
+        [Display(Name = "Tipo de restaurante")]
         public int IdRestaurantType { get; set; }
 
+
+        [Display(Name = "Tipo de restaurante")]
         public RestaurantType RestaurantType { get; set; }
 
+        [Display(Name = "Tipo de comida")]
         public List<FoodTypeRestaurant> FoodTypeRestaurants { get; set; }
 
         [NotMapped]
