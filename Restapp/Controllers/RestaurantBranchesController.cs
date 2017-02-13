@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Restapp.Repositories;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -12,6 +13,14 @@ namespace Restapp.Models
     public class RestaurantBranchesController : Controller
     {
         private RestappDB db = new RestappDB();
+
+        private List<Restaurant> Restaurants
+        {
+            get
+            {
+                return RepositoryHandler.RestaurantRepository.GetAll();
+            }
+        }
 
         // GET: RestaurantBranches
         public ActionResult Index()
@@ -37,7 +46,8 @@ namespace Restapp.Models
         // GET: RestaurantBranches/Create
         public ActionResult Create()
         {
-            return View();
+            ViewBag.Restaurants = Restaurants;
+            return View(new RestaurantBranch());
         }
 
         // POST: RestaurantBranches/Create
@@ -69,6 +79,7 @@ namespace Restapp.Models
             {
                 return HttpNotFound();
             }
+            ViewBag.Restaurants = Restaurants;
             return View(restaurantBranch);
         }
 

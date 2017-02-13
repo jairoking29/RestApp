@@ -8,6 +8,7 @@ using System.Collections.Generic;
 
 namespace Restapp.Controllers
 {
+    [Authorize]
     public class RestaurantsController : Controller
     {
         private RestappDB db = new RestappDB();
