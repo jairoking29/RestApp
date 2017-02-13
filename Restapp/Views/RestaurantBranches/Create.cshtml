@@ -7,10 +7,10 @@
 <h2>Create</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>RestaurantBranch</h4>
         <hr />
@@ -26,16 +26,12 @@
         <div class="form-group">
             @Html.LabelFor(model => model.IdRestaurant, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.IdRestaurant, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DropDownListFor(
+                                r => r.IdRestaurant,
+                                new SelectList(ViewBag.Restaurants, "Id", "Name", Model.Restaurant),
+                                new { @class = "form-control" }
+                )
                 @Html.ValidationMessageFor(model => model.IdRestaurant, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.IdLocation, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.IdLocation, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.IdLocation, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -47,6 +43,15 @@
             </div>
         </div>
 
+        <div class="form-group">
+            @Html.LabelFor(model => model.IdLocation, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input id="locationInput" type="text" class="form-control" />
+                @Html.ValidationMessageFor(model => model.IdLocation, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @Html.Partial("_Map")
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Create" class="btn btn-default" />

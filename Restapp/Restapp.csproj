@@ -190,7 +190,8 @@
     <Compile Include="Models\RestappDB.cs" />
     <Compile Include="Models\Restaurant.cs" />
     <Compile Include="Models\RestaurantBranch.cs" />
-    <Compile Include="Models\RestaurantBranchesController.cs" />
+    <Compile Include="Controllers\RestaurantBranchesController.cs" />
+    <Compile Include="Models\RestaurantBranchViewModel.cs" />
     <Compile Include="Models\RestaurantType.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -221,6 +222,8 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\map.js" />
+    <Content Include="Scripts\mapHandler.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
@@ -251,12 +254,6 @@
     <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
     <Content Include="Views\Account\SendCode.cshtml" />
     <Content Include="Views\Account\VerifyCode.cshtml" />
-    <Content Include="Views\Manage\AddPhoneNumber.cshtml" />
-    <Content Include="Views\Manage\ChangePassword.cshtml" />
-    <Content Include="Views\Manage\Index.cshtml" />
-    <Content Include="Views\Manage\ManageLogins.cshtml" />
-    <Content Include="Views\Manage\SetPassword.cshtml" />
-    <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Restaurants\Create.cshtml" />
@@ -279,6 +276,13 @@
     <Content Include="Views\RestaurantBranches\Details.cshtml" />
     <Content Include="Views\RestaurantBranches\Edit.cshtml" />
     <Content Include="Views\RestaurantBranches\Index.cshtml" />
+    <Content Include="Views\RestaurantBranches\_Map.cshtml" />
+    <Content Include="Views\Manage\AddPhoneNumber.cshtml" />
+    <Content Include="Views\Manage\ChangePassword.cshtml" />
+    <Content Include="Views\Manage\Index.cshtml" />
+    <Content Include="Views\Manage\ManageLogins.cshtml" />
+    <Content Include="Views\Manage\SetPassword.cshtml" />
+    <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
