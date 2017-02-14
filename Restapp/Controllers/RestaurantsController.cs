@@ -89,12 +89,13 @@ namespace Restapp.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Description,Phone,IdRestaurantType")] Restaurant restaurant)
+        public ActionResult Edit([Bind(Include = "Id,Name,Description,Phone,IdRestaurantType,FoodTypeIds")] Restaurant restaurant)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(restaurant).State = EntityState.Modified;
                 db.SaveChanges();
+                RepositoryHandler.FoodTypeRestaurantRepository.SaveFromRestaurant(restaurant);
                 return RedirectToAction("Index");
             }
             return View(restaurant);

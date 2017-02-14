@@ -15,12 +15,12 @@ namespace Restapp.Repositories
 
         public void SaveFromRestaurant(Restaurant restaurant)
         {
-            if (restaurant.FoodTypeIds.Count > 0)
+            if (restaurant?.FoodTypeIds != null && restaurant.FoodTypeIds.Count > 0)
             {
+                var savedFoodTypeRestaurants = GetByRestaurantReturningDictionary(restaurant.Id);
                 foreach (var foodTypeId in restaurant.FoodTypeIds)
                 {
-                    FoodType foodType = RepositoryHandler.FoodTypeRepository.Get(foodTypeId);
-                    if (foodType != null)
+                    if (!savedFoodTypeRestaurants.ContainsKey(foodTypeId))
                     {
                         var foodTypeRestaurant = new FoodTypeRestaurant()
                         {
@@ -30,7 +30,30 @@ namespace Restapp.Repositories
                         Save(foodTypeRestaurant);
                     }
                 }
+
+                foreach (var foodTypeRestaurant in savedFoodTypeRestaurants)
+                {
+                    if (!restaurant.FoodTypeIds.Contains(foodTypeRestaurant.Key))
+                    {
+                        Delete(foodTypeRestaurant.Value.Id);
+                    }
+                }
             }
+        }
+
+        public FoodTypeRestaurant GetByRestaurantAndFoodType(int idRestaurant, int idFoodType)
+        {
+            return _table.FirstOrDefault(ftr => ftr.IdRestaurant == idRestaurant && ftr.IdFoodType == idFoodType);
+        }
+
+        public List<FoodTypeRestaurant> GetByRestaurant(int idRestaurant)
+        {
+            return _table.Where(ftr => ftr.IdRestaurant == idRestaurant).ToList();
+        }
+
+        public Dictionary<int, FoodTypeRestaurant> GetByRestaurantReturningDictionary(int idRestaurant)
+        {
+            return GetByRestaurant(idRestaurant).ToDictionary(ftr => ftr.IdFoodType);
         }
     }
 }

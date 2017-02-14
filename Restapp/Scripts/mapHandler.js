@@ -5,6 +5,8 @@
 
     var initialPosition = { lat: 18.4736744, lng: -69.9141168 };
 
+    geolocate();
+
     map = new google.maps.Map(document.getElementById('map'), {
         center: initialPosition,
         scrollwheel: true,
@@ -39,13 +41,29 @@
         else {
             marker.setPosition(location);
             map.panTo(location);
-            setPositionOnInputs(location);
         }
+        setPositionOnInputs(location);
     }
 
     function setPositionOnInputs(location)
     {
         $("#latitude").val(location.lat);
         $("#longitude").val(location.lng);
+    }
+
+    function geolocate() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function (position) {
+                var geolocation = {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
+                };
+                var circle = new google.maps.Circle({
+                    center: geolocation,
+                    radius: position.coords.accuracy
+                });
+                autocomplete.setBounds(circle.getBounds());
+            });
+        }
     }
 }

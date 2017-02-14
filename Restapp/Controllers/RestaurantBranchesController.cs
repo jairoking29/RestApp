@@ -55,11 +55,11 @@ namespace Restapp.Models
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,IdRestaurant,IdLocation,Phone")] RestaurantBranch restaurantBranch)
+        public ActionResult Create([Bind(Include = "Id,Name,IdRestaurant,IdLocation,Phone,Latitude,Longitude")] RestaurantBranchViewModel restaurantBranch)
         {
             if (ModelState.IsValid)
             {
-                db.RestaurantBranches.Add(restaurantBranch);
+                db.RestaurantBranches.Add(restaurantBranch.GetRestaurantBranch());
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -88,11 +88,11 @@ namespace Restapp.Models
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,IdRestaurant,IdLocation,Phone")] RestaurantBranch restaurantBranch)
+        public ActionResult Edit([Bind(Include = "Id,Name,IdRestaurant,IdLocation,Phone,Latitude,Longitude")] RestaurantBranchViewModel restaurantBranch)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(restaurantBranch).State = EntityState.Modified;
+                db.Entry(restaurantBranch.GetRestaurantBranch()).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
