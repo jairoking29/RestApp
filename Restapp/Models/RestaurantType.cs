@@ -16,6 +16,7 @@ namespace Restapp.Models
 
         [Display(Name = "Descripción")]
         [StringLength(1024)]
+        [DataType(DataType.MultilineText)]
         public string Description { get; set; }
     }
 }

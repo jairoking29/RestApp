@@ -47,7 +47,7 @@ namespace Restapp.Models
         public ActionResult Create()
         {
             ViewBag.Restaurants = Restaurants;
-            return View(new RestaurantBranch());
+            return View(new RestaurantBranchViewModel());
         }
 
         // POST: RestaurantBranches/Create
@@ -74,7 +74,8 @@ namespace Restapp.Models
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            RestaurantBranch restaurantBranch = db.RestaurantBranches.Find(id);
+            RestaurantBranchViewModel restaurantBranch = RepositoryHandler.RestaurantBranchRepository.GetAsViewModel(id ?? 0);
+            restaurantBranch.SetLocation();
             if (restaurantBranch == null)
             {
                 return HttpNotFound();
@@ -93,6 +94,7 @@ namespace Restapp.Models
             if (ModelState.IsValid)
             {
                 db.Entry(restaurantBranch.GetRestaurantBranch()).State = EntityState.Modified;
+                db.Entry(restaurantBranch.GetRestaurantBranch().Location).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

@@ -17,10 +17,12 @@ namespace Restapp.Models
 
         [Display(Name = "Descripción")]
         [StringLength(1024)]
+        [DataType(DataType.MultilineText)]
         public string Description { get; set; }
 
         [Display(Name = "Teléfono")]
         [StringLength(16)]
+        [Phone]
         public string Phone { get; set; }
 
         [Display(Name = "Tipo de restaurante")]

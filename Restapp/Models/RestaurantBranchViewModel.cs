@@ -18,9 +18,10 @@ namespace Restapp.Models
             if (Location == null)
             {
                 Location = new Location();
-                Location.Latitude = Latitude;
-                Location.Longitude = Longitude;
             }
+            Location.Id = IdLocation;
+            Location.Latitude = Latitude;
+            Location.Longitude = Longitude;
         }
 
         public RestaurantBranch GetRestaurantBranch()
@@ -34,6 +35,26 @@ namespace Restapp.Models
             restaurantBranch.IdRestaurant = IdRestaurant;
             restaurantBranch.IdLocation = IdLocation;
             return restaurantBranch;
+        }
+
+        public RestaurantBranchViewModel() : base()
+        {
+            SetLocation();
+        }
+
+        public RestaurantBranchViewModel(RestaurantBranch rb)
+        {
+            Id = rb.Id;
+            IdRestaurant = rb.IdRestaurant;
+            IdLocation = rb.IdLocation;
+            Name = rb.Name;
+            Phone = rb.Phone;
+            if (rb.Location != null)
+            {
+                Location = rb.Location;
+                Latitude = rb.Location.Latitude;
+                Longitude = rb.Location.Longitude;
+            }
         }
     }
 }

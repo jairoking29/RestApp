@@ -1,7 +1,9 @@
-﻿<div id="map" style="height: 500px;"></div>
+﻿@model Restapp.Models.Location
+<div id="map" style="height: 500px;"></div>
 
-<input type="hidden" name="Latitude" id="latitude" />
-<input type="hidden" name="Longitude" id="longitude"/>
+<input type="hidden" name="IdLocation" id="IdLocation" value="@Model.Id" />
+<input type="hidden" name="Latitude" id="latitude" value="@Model.Latitude" />
+<input type="hidden" name="Longitude" id="longitude" value="@Model.Longitude"/>
 
 <script src="~/Scripts/mapHandler.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRCuzGT_iK2wDPp7kPATXSLNnhpS6oPcQ&callback=initMap&libraries=places" async defer></script>

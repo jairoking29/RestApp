@@ -22,6 +22,7 @@ namespace Restapp.Models
 
         [Display(Name = "Teléfono")]
         [StringLength(16)]
+        [Phone]
         public string Phone { get; set; }
 
 

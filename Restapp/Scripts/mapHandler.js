@@ -1,17 +1,18 @@
 ﻿function initMap() {
     var clickFlag = 0;
     var map;
-    var restaurantName = $("");
 
     var initialPosition = { lat: 18.4736744, lng: -69.9141168 };
 
     geolocate();
 
     map = new google.maps.Map(document.getElementById('map'), {
-        center: initialPosition,
+        center: getLocationFromInputs(),
         scrollwheel: true,
         zoom: 15
     });
+
+    placeMarker(getLocationFromInputs());
 
     google.maps.event.addListener(map, 'click', function (event) {
         placeMarker(event.latLng);
@@ -45,10 +46,16 @@
         setPositionOnInputs(location);
     }
 
-    function setPositionOnInputs(location)
-    {
+    function setPositionOnInputs(location) {
         $("#latitude").val(location.lat);
         $("#longitude").val(location.lng);
+    }
+
+    function getLocationFromInputs() {
+        return {
+            lat: Number($("#latitude").val()) || initialPosition.lat,
+            lng: Number($("#longitude").val()) || initialPosition.lng
+        }
     }
 
     function geolocate() {
