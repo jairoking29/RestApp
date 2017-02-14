@@ -20,6 +20,26 @@
                 </button>
                 @Html.ActionLink("Restapp", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
+
+           <!-- <div id="header">
+                <ul class="nav">
+                    <li><a href="">Inicio</a></li>
+                    <li><a href="">Manteminientos</a>
+                        <ul>
+                            <h:link outcome="/almacen/List" value="Crear Almacen" />
+                            <h:link outcome="/articulos/List" value="Crear Articulos" />
+
+                        </ul>
+                    </li>
+                    <li><a href="">Procesos</a>
+                        <ul>
+                            <h:link outcome="/articuloAlmacen/List" value="Administrar Almacen" />
+                        </ul>
+                    </li>
+                    <li><a href="Contacto.html">Contacto</a></li>
+                </ul>
+            </div> -->
+
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Restaurantes", "Index", "Restaurants")</li>
